@@ -1,0 +1,268 @@
+/* Updated App.css with Coral-Teal Theme and Smooth UI */
+
+:root {
+  --coral: #F4888C;
+  --gold: #FAC542;
+  --teal: #35DAAD;
+  --sky: #66C4C3;
+  --cream: #FFF4EC;
+  --text-dark: #2c3e50;
+  --text-light: #4b5563;
+  --white: #ffffff;
+  --font-main: 'Poppins', sans-serif;
+  --font-head: 'Dancing Script', cursive;
+}
+
+/* Global Headings Style – Storybook Look */
+h1, h2, .storybook-heading {
+  font-family: var(--font-head);
+  font-weight: 500;
+  color: var(--coral);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  background-color: var(--teal);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--white);
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: var(--gold);
+}
+
+nav .logo-link span {
+  font-size: 1.1rem;
+  color: white;
+}
+
+/* Layout */
+.container {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+h1 {
+  color: var(--coral);
+  font-size: 2.5rem;
+}
+
+h2 {
+  color: var(--teal);
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+ul {
+  padding-left: 1.5rem;
+}
+
+button, .btn {
+  background-color: var(--coral);
+  color: var(--white);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--gold);
+  color: var(--dark);
+}
+
+/* Footer */
+footer {
+  background-color: var(--teal);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.95rem;
+  margin-top: 4rem;
+}
+
+footer a {
+  color: var(--white);
+  margin: 0 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover {
+  color: var(--gold);
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  margin-right: 0.5rem;
+}
+
+.badge-coral { background-color: var(--coral); }
+.badge-gold  { background-color: var(--gold); }
+.badge-teal  { background-color: var(--teal); }
+.badge-sky   { background-color: var(--sky); }
+
+/* Scroll-to-Top Button */
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+/* Contact Form – Floating Labels */
+.form-floating {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-floating input,
+.form-floating textarea {
+  width: 100%;
+  padding: 1.5rem 1rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  font-size: 1.05rem;
+  min-height: 56px;
+}
+
+.form-floating textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-floating label {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: white;
+  padding: 0 0.25rem;
+}
+
+.form-floating input:focus + label,
+.form-floating textarea:focus + label,
+.form-floating input:not(:placeholder-shown) + label,
+.form-floating textarea:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 0.9rem;
+  color: #f78ca2;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
+
+  nav .logo-link span {
+    font-size: 1rem;
+  }
+
+  .nav-logo {
+    width: 90px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}
