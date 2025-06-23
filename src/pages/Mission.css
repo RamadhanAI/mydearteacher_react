@@ -1,0 +1,118 @@
+/* ========== Mission Hero Section ========== */
+.mission-hero {
+  background-image: url('/images/mission-bg.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.mission-hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+.section-heading {
+  font-size: 4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--coral);
+  margin-bottom: 2rem;
+  font-family: var(--font-head);
+  text-shadow: 2px 2px #fac542; /* Coral + Gold contrast */
+}
+
+.mission-hero h1,
+.mission-hero p {
+  position: relative;
+  z-index: 1;
+}
+
+.mission-hero h1 {
+  font-size: 3rem;
+  font-family: var(--font-head);
+  margin-bottom: 1rem;
+}
+
+.mission-hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* ========== Mission Cards ========== */
+.mission-section {
+  padding: 4rem 2rem;
+  background-color: var(--cream);
+}
+
+.mission-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 2rem;
+}
+
+.mission-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.mission-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.mission-card:hover .icon {
+  transform: scale(1.2);
+}
+
+.mission-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--coral);
+}
+
+.mission-card p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+/* ========== CTA Buttons ========== */
+.mission-cta {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.mission-cta .btn {
+  background-color: var(--coral);
+  color: white;
+  margin: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.mission-cta .btn:hover {
+  background-color: var(--gold);
+  color: var(--text-dark);
+}

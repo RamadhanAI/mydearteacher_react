@@ -1,268 +1,332 @@
-/* Updated App.css with Coral-Teal Theme and Smooth UI */
-
+/* ========== Root Variables ========== */
 :root {
   --coral: #F4888C;
   --gold: #FAC542;
   --teal: #35DAAD;
-  --sky: #66C4C3;
+  --sky:  #66C4C3;
   --cream: #FFF4EC;
-  --text-dark: #2c3e50;
+  --text-dark:  #2c3e50;
   --text-light: #4b5563;
   --white: #ffffff;
   --font-main: 'Poppins', sans-serif;
   --font-head: 'Dancing Script', cursive;
 }
 
-/* Global Headings Style – Storybook Look */
+/* ========== Global Typography ========== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
 h1, h2, .storybook-heading {
   font-family: var(--font-head);
   font-weight: 500;
   color: var(--coral);
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-main);
-  background-color: var(--cream);
-  color: var(--text-dark);
-  line-height: 1.6;
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.8rem; margin-top: 2rem; color: var(--teal); }
+
+p   { font-size: 1rem; color: var(--text-light); }
+ul  { padding-left: 1.5rem; }
+
+/* ========== App Container ========== */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Navbar */
-nav {
-  background-color: var(--teal);
-  padding: 1rem 2rem;
+/* ========== Navbar (Responsive + RTL) ========== */
+.navbar {
+  background: var(--teal);
+  padding: 0.8rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1000;
 }
 
-.nav-logo {
-  width: 120px;
-  height: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
+.navbar.ltr { direction: ltr; }
+.navbar.rtl { direction: rtl; }
 
-nav ul {
-  list-style: none;
+.logo-link {
   display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li a {
-  font-size: 1.1rem;
-  font-weight: 600;
+  align-items: center;
   text-decoration: none;
   color: var(--white);
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: var(--gold);
-}
-
-nav .logo-link span {
+  font-weight: bold;
   font-size: 1.1rem;
-  color: white;
+}
+.logo-link img {
+  height: 40px;
+  margin-inline-end: 0.5rem;
+  object-fit: contain;
 }
 
-/* Layout */
-.container {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; cursor: pointer; }
+.hamburger .bar {
+  width: 25px; height: 3px; background: var(--white);
+  margin: 4px 0; transition: .4s;
+}
+.hamburger .bar.open:nth-child(1){ transform:rotate(45deg) translate(5px,5px); }
+.hamburger .bar.open:nth-child(2){ opacity:0; }
+.hamburger .bar.open:nth-child(3){ transform:rotate(-45deg) translate(5px,-5px); }
+
+/* Links */
+.nav-links {
+  display: flex; align-items: center; list-style: none;
+  gap: 1.2rem;
+}
+.nav-links li a {
+  color: var(--white); text-decoration: none;
+  font-weight: 600; font-size: 1.05rem;
+}
+.nav-links li a:hover { color: var(--gold); }
+
+/* Language switch */
+.lang-switch { display: flex; gap: .3rem; }
+.lang-switch button {
+  background: transparent; border: none; color: var(--white);
+  font-weight: 600; cursor: pointer;
+}
+.lang-switch span { color: var(--white); }
+
+/* Mobile Behaviour */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .nav-links {
+    position: absolute; top: 100%; left: 0;
+    width: 100%; flex-direction: column;
+    background: var(--coral);
+    padding: 1rem;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s ease;
+  }
+  .nav-links.active { max-height: 500px; }
+
+  .nav-links li { margin: .5rem 0; }
 }
 
-.card {
-  background: var(--white);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-  margin-bottom: 2rem;
-}
-
-h1 {
-  color: var(--coral);
-  font-size: 2.5rem;
-}
-
-h2 {
-  color: var(--teal);
-  font-size: 1.8rem;
-  margin-top: 2rem;
-}
-
-p {
-  font-size: 1rem;
-  color: var(--text-light);
-}
-
-ul {
-  padding-left: 1.5rem;
-}
-
-button, .btn {
-  background-color: var(--coral);
-  color: var(--white);
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover, .btn:hover {
-  background-color: var(--gold);
-  color: var(--dark);
-}
-
-/* Footer */
+/* ========== Footer ========== */
 footer {
   background-color: var(--teal);
   color: var(--white);
-  text-align: center;
   padding: 2rem;
+  text-align: center;
   font-size: 0.95rem;
-  margin-top: 4rem;
+  margin-top: auto;
 }
 
 footer a {
   color: var(--white);
-  margin: 0 0.5rem;
   text-decoration: none;
-  font-weight: 600;
 }
 
 footer a:hover {
   color: var(--gold);
 }
 
-/* Gallery */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-}
+/* ========== Layout Containers ========== */
+.container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
 
-.gallery-grid img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
+.card {
+  background: var(--white);
+  padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,.05);
+  margin-bottom: 2rem;
 }
 
-/* Badges */
-.badge {
-  display: inline-block;
-  padding: 0.3rem 0.8rem;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: white;
-  border-radius: 12px;
-  margin-right: 0.5rem;
+/* ========== Buttons ========== */
+button, .btn {
+  background: var(--coral);
+  color: var(--white); border: none;
+  padding: .75rem 1.25rem;
+  font-weight: 600; border-radius: 6px;
+  cursor: pointer; text-decoration: none;
+  transition: background .3s ease;
+}
+button:hover, .btn:hover {
+  background: var(--gold); color: var(--text-dark);
 }
 
-.badge-coral { background-color: var(--coral); }
-.badge-gold  { background-color: var(--gold); }
-.badge-teal  { background-color: var(--teal); }
-.badge-sky   { background-color: var(--sky); }
-
-/* Scroll-to-Top Button */
+/* ========== Scroll-to-Top Button ========== */
 .scroll-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: var(--teal);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: opacity 0.3s ease;
-  z-index: 999;
+  position: fixed; bottom: 2rem; right: 2rem;
+  width: 3rem; height: 3rem; font-size: 1.5rem;
+  background: var(--teal); color: var(--white);
+  border: none; border-radius: 50%; cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2); z-index: 999;
+  transition: opacity .3s ease;
 }
 
-/* Contact Form – Floating Labels */
-.form-floating {
-  position: relative;
-  margin-bottom: 1.5rem;
+/* ========== Gallery (Horizontal Carousel) ========== */
+.gallery-horizontal {
+  display: flex; overflow-x: auto; gap: 1rem; padding: 1rem 0;
+  scroll-snap-type: x mandatory; scrollbar-width: thin;
+}
+.gallery-horizontal img.gallery-img {
+  flex: 0 0 auto; width: 300px; height: 200px;
+  object-fit: cover; border-radius: 16px;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  transition: transform .3s;
+}
+.gallery-horizontal img.gallery-img:hover {
+  transform: scale(1.03);
 }
 
+/* ========== Form – Floating Labels ========== */
+.form-floating { position: relative; margin-bottom: 1.5rem; }
 .form-floating input,
 .form-floating textarea {
-  width: 100%;
-  padding: 1.5rem 1rem 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: white;
-  font-size: 1.05rem;
-  min-height: 56px;
+  width: 100%; padding: 1.5rem 1rem .75rem;
+  border: 1px solid #ddd; border-radius: 8px;
+  font-size: 1.05rem; background: var(--white);
 }
-
-.form-floating textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
+.form-floating textarea { min-height: 140px; resize: vertical; }
 .form-floating label {
-  position: absolute;
-  top: 0.75rem;
-  left: 1rem;
-  color: #888;
-  font-size: 0.9rem;
-  pointer-events: none;
-  transition: all 0.2s ease;
-  background: white;
-  padding: 0 0.25rem;
+  position: absolute; top: .75rem; left: 1rem;
+  background: var(--white); padding: 0 .25rem;
+  color: #888; font-size: .9rem; pointer-events: none;
+  transition: .2s;
 }
-
 .form-floating input:focus + label,
 .form-floating textarea:focus + label,
 .form-floating input:not(:placeholder-shown) + label,
 .form-floating textarea:not(:placeholder-shown) + label {
-  top: -0.6rem;
-  left: 0.9rem;
-  color: #f78ca2;
-  font-weight: bold;
-  font-size: 0.75rem;
+  top: -.6rem; left: .9rem; font-size: .75rem;
+  color: #f78ca2; font-weight: bold;
 }
 
-/* Responsive */
+/* ========== WhatsApp Icon ========== */
+.whatsapp-icon img {
+  width: 55px; height: 55px;
+  transition: transform .3s ease-in-out;
+}
+.whatsapp-icon img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(53,218,173,.5);
+}
+
+/* ========== Success Message Utility ========== */
+.success-message {
+  background: var(--teal);
+  color: var(--white);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* ========== Mission Section ========== */
+.mission-wrapper { text-align: center; margin: 4rem auto; }
+.section-title { font-family: var(--font-head); font-size: 3rem; font-weight: bold; color: var(--coral); }
+.section-sub { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 2rem; }
+.mission-grid {
+  display: grid; gap: 1.5rem; margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.mission-card {
+  background: var(--white); padding: 2rem 1rem; border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05); transition: transform .3s;
+}
+.mission-card:hover { transform: translateY(-6px); }
+.mission-icon { font-size: 2.5rem; color: var(--teal); margin-bottom: .5rem; }
+.mission-desc { font-size: .95rem; color: var(--text-light); line-height: 1.6; margin-top: .5rem; }
+
+/* ========== About Page Card & RTL Font ========== */
+.about-card {
+  background: var(--cream); border-radius: 16px;
+  padding: 1.5rem; margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+.about-title { font-size: 2rem; color: var(--coral); text-align: center; margin: 2rem 0 1rem; }
+.arabic-font { font-family: 'Cairo', sans-serif; }
+
+/* ========== Animations ========== */
+.storybook-heading { animation: fadeIn 1.2s ease-in-out; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Responsive Fixes (General) ========== */
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  h1 { font-size: 2rem; }
+  .container { padding: 1rem; }
+  .whatsapp-icon { display: flex; justify-content: center; margin-top: 3rem; }
+}
+/* ========== Footer (Balanced Compact Layout) ========== */
+/* ========== Footer ========== */
+.footer {
+  background: var(--teal);
+  color: var(--white);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 1.05rem;
+}
 
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
-    gap: 0.5rem;
-  }
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-  nav .logo-link span {
-    font-size: 1rem;
-  }
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+}
 
-  .nav-logo {
-    width: 90px;
-  }
+.footer-col h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+}
 
-  h1 {
-    font-size: 2rem;
-  }
+.footer-col p,
+.footer-col a {
+  font-size: 1.05rem;
+  color: var(--white);
+  text-decoration: none;
+}
 
-  .container {
-    padding: 1rem;
-  }
+.footer-col a:hover {
+  text-decoration: underline;
+  color: var(--gold);
+}
+
+.footer-socials a {
+  font-size: 2rem; /* ⬅ Bigger icons */
+  color: var(--white);
+  margin: 0 0.6rem;
+}
+
+.footer-socials a:hover {
+  color: var(--gold);
+}
+
+.footer-logo {
+  height: 60px; /* ⬅ Bigger logo */
+  margin-bottom: 0.8rem;
+  object-fit: contain;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: var(--cream);
 }

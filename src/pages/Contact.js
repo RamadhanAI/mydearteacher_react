@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     const honeypot = e.target.elements._gotcha?.value;
     if (honeypot) {
-      e.preventDefault(); // Bot detected
+      e.preventDefault(); // bot trap
       return;
     }
     setSubmitted(true);
@@ -14,23 +16,12 @@ const Contact = () => {
 
   return (
     <div className="container">
-      <h1 className="storybook-heading">Contact Us</h1>
-      <p style={{ maxWidth: '650px' }}>
-        We’d love to hear from you. Whether it’s a question, invitation, or partnership request —
-        reach out and let’s build something beautiful together.
-      </p>
+      <h1 className="storybook-heading">{t('contactTitle')}</h1>
+      <p style={{ maxWidth: '650px' }}>{t('contactIntro')}</p>
 
       {submitted && (
-        <div style={{
-          backgroundColor: '#35DAAD',
-          color: 'white',
-          padding: '1rem',
-          textAlign: 'center',
-          borderRadius: '8px',
-          marginTop: '1rem',
-          fontWeight: '600'
-        }}>
-          💌 Your message has been sent! Thank you.
+        <div className="success-message">
+          {t('contactSuccess')}
         </div>
       )}
 
@@ -38,52 +29,33 @@ const Contact = () => {
         action="https://formspree.io/f/xnnvbwwd"
         method="POST"
         onSubmit={handleSubmit}
-        style={{
-          background: 'white',
-          padding: '2rem',
-          borderRadius: '16px',
-          boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-          marginTop: '2rem',
-          maxWidth: '650px',
-          marginLeft: 'auto',
-          marginRight: 'auto'
-        }}
+        className="styled-form"
       >
-        {/* Honeypot field */}
         <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
         <div className="form-floating">
-          <input type="text" name="name" required placeholder="Your Name" />
-          <label>Your Name</label>
+          <input type="text" name="name" required placeholder={t('contactName')} />
+          <label>{t('contactName')}</label>
         </div>
 
         <div className="form-floating">
-          <input type="email" name="email" required placeholder="Email" />
-          <label>Email</label>
+          <input type="email" name="email" required placeholder={t('contactEmail')} />
+          <label>{t('contactEmail')}</label>
         </div>
 
         <div className="form-floating">
-          <textarea name="message" rows="5" required placeholder="Message" />
-          <label>Message</label>
+          <textarea name="message" rows="5" required placeholder={t('contactMessage')} />
+          <label>{t('contactMessage')}</label>
         </div>
 
-        <button
-          type="submit"
-          className="btn"
-          style={{
-            marginTop: '1.5rem',
-            backgroundColor: '#f78ca2',
-            border: 'none',
-            fontWeight: '600'
-          }}
-        >
-          Send Message
+        <button type="submit" className="btn" style={{ marginTop: '1.5rem' }}>
+          {t('contactBtn')}
         </button>
       </form>
 
-      <div className="card" style={{ marginTop: '3rem', maxWidth: '650px', marginLeft: 'auto', marginRight: 'auto' }}>
-        <p><strong>Email:</strong> <a href="mailto:mydearteacherletter@gmail.com">mydearteacherletter@gmail.com</a></p>
-        <p><strong>Website:</strong> <a href="https://www.mydearteachermovement.org" target="_blank" rel="noreferrer">mydearteachermovement.org</a></p>
+      <div className="card" style={{ marginTop: '3rem', maxWidth: '650px', margin: 'auto' }}>
+        <p><strong>{t('contactDetailsEmail')}</strong> <a href="mailto:mydearteacherletter@gmail.com">mydearteacherletter@gmail.com</a></p>
+        <p><strong>{t('contactDetailsWebsite')}</strong> <a href="https://www.mydearteachermovement.org" target="_blank" rel="noreferrer">mydearteachermovement.org</a></p>
       </div>
     </div>
   );

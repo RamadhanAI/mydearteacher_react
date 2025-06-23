@@ -1,53 +1,88 @@
 // src/pages/About.js
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import '../App.css';
 
-const About = () => (
-  <div className="container">
-    <h1>About the #MyDearTeacher Movement</h1>
+const About = () => {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
 
-    <p><strong>Founded by UN Peace Ambassador and Educational Psychologist, Amb. Beauty Tommy</strong>, the #MyDearTeacher Movement is a global initiative dedicated to transforming how the world sees, supports, and celebrates neurodiverse learners. Rooted in equity, empathy, and empowerment, the movement advocates for inclusive education where every child feels seen, valued, and understood.</p>
+  /* card helper */
+  const Card = ({ children }) => (
+    <div className="about-card">
+      {children}
+    </div>
+  );
 
-    <p>What began as a heartfelt message in the bestselling book <em>Dear Teacher, I Am Not Broken</em> has grown into a global call for action—uniting educators, parents, policymakers, and communities around a shared goal: ensuring that no child is left behind because of how they learn.</p>
+  return (
+    <div
+      className={`container ${isRTL ? 'arabic-font' : ''}`}
+      style={{ direction: isRTL ? 'rtl' : 'ltr' }}
+    >
+      <h1 className="storybook-heading about-title">{t('aboutTitle')}</h1>
 
-    <h2>🎯 Our Mission</h2>
-    <p>To equip and inspire educators to teach with compassion and confidence, so all students—especially those with special educational needs—can thrive in inclusive, supportive environments.</p>
+      <Card>
+        <p><strong>{t('aboutFounder')}</strong></p>
+        <p>{t('aboutIntro')}</p>
+      </Card>
 
-    <h2>👁 Our Vision</h2>
-    <p>A future where no learner is labeled as broken, and every classroom becomes a place of belonging, growth, and possibility.</p>
+      <Card>
+        <h2>{t('aboutOriginTitle')}</h2>
+        <p>{t('aboutGrowth')}</p>
+      </Card>
 
-    <h2>💡 What Inspired the Movement</h2>
-    <p>The movement was born from real stories—of children misunderstood, of teachers overwhelmed, and of families seeking hope. Amb. Beauty Tommy’s experiences led to two powerful books that gave voice to the voiceless and inspired thousands of educators globally.</p>
+      <Card>
+        <h2>{t('aboutMissionTitle')}</h2>
+        <p>{t('aboutMission')}</p>
+      </Card>
 
-    <h2>🌐 Global Impact & SDG Alignment</h2>
-    <ul>
-      <li>📘 SDG 4 – Quality Education</li>
-      <li>🔗 SDG 10 – Reduced Inequalities</li>
-      <li>🧠 SDG 3 – Good Health & Wellbeing</li>
-      <li>🤝 SDG 17 – Partnerships for the Goals</li>
-    </ul>
+      <Card>
+        <h2>{t('aboutVisionTitle')}</h2>
+        <p>{t('aboutVision')}</p>
+      </Card>
 
-    <h2>💼 What We Do</h2>
-    <ul>
-      <li>📘 Books & Publications – Tools that spark dialogue</li>
-      <li>👩🏽‍🏫 Educator Training & Inclusion Toolkits</li>
-      <li>🎤 Campaigns & Advocacy – Digital and live</li>
-      <li>🧠 School Partnerships – Inclusion frameworks</li>
-      <li>📣 Youth & Parent Engagement – Voices that matter</li>
-    </ul>
+      <Card>
+        <h2>{t('aboutInspirationTitle')}</h2>
+        <p>{t('aboutInspiration')}</p>
+      </Card>
 
-    <h2>🤝 Why Partnerships Matter</h2>
-    <p>We believe change happens through collaboration—with schools, government bodies, special needs centers, NGOs, and UN-aligned organizations. Together, we can expand inclusive practices, provide tools, train educators, and influence global policy.</p>
+      <Card>
+        <h2>{t('aboutSDGTitle')}</h2>
+        <ul>
+          <li>{t('sdg4')}</li>
+          <li>{t('sdg10')}</li>
+          <li>{t('sdg3')}</li>
+          <li>{t('sdg17')}</li>
+        </ul>
+      </Card>
 
-    <h2>🌟 Partner With Us</h2>
-    <p>Join us to reimagine education for every child. We offer:</p>
-    <ul>
-      <li>✅ Professional development programs</li>
-      <li>✅ Inclusive consulting and frameworks</li>
-      <li>✅ Global visibility through campaigns</li>
-      <li>✅ Research-based advocacy grounded in real life</li>
-    </ul>
+      <Card>
+        <h2>{t('aboutWorkTitle')}</h2>
+        <ul>
+          <li>{t('aboutBooks')}</li>
+          <li>{t('aboutTraining')}</li>
+          <li>{t('aboutCampaigns')}</li>
+          <li>{t('aboutPartnerships')}</li>
+          <li>{t('aboutEngagement')}</li>
+        </ul>
+      </Card>
 
-  </div>
-);
+      <Card>
+        <h2>{t('aboutPartnersTitle')}</h2>
+        <p>{t('aboutPartners')}</p>
+      </Card>
+
+      <Card>
+        <h2>{t('aboutJoinTitle')}</h2>
+        <ul>
+          <li>✅ {t('aboutOffer1')}</li>
+          <li>✅ {t('aboutOffer2')}</li>
+          <li>✅ {t('aboutOffer3')}</li>
+          <li>✅ {t('aboutOffer4')}</li>
+        </ul>
+      </Card>
+    </div>
+  );
+};
 
 export default About;
